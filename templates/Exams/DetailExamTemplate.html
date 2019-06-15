@@ -1,0 +1,59 @@
+{% extends 'RExam/MainTemplate.html' %}
+{% load static %}
+{% block title %} {{ object.name }} {% endblock title %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'Exams/style.css' %}"/>
+{% endblock head %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="exam-detail">
+            <div class="detail-name">{{ object.name }}</div>
+            <div class="detail-description">{% if not object.description %}Описание
+                отсутствует...{% endif %}{{ object.description }}</div>
+            <div class="row flex-row flex-row-reverse detail-info">
+                <div class="detail-subject">Предмет: {{ object.subject }}</div>
+                <div class="detail-data">Дата создания: {{ object.date }}</div>
+                <div class="detail-author">Автор: {{ object.author }}</div>
+            </div>
+        </div>
+        {% if perms.Exams.view_questionmodel %}
+            <div class="exam-questions">
+                <table class="table table-responsive-sm  table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width: 2%">№</th>
+                        <th scope="col" style="width: 80%;">Вопрос</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for question in questions %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>
+                                <div class="row">
+                                    <div class="col-8">{{ question.question_text }}</div>
+                                    <div class="row col-4 flex-row question-controls justify-content-end">
+                                        {% if perms.Exams.delete_questionmodel %}
+                                            <a href="{% url 'QuestionDelete' pk=question.id exam_id=object.id %}">
+                                                <button class="btn btn-control btn-outline-danger ml-1"><i
+                                                        class="far fa-trash-alt"></i></button>
+                                            </a>{% endif %}
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+        {% if perms.Exams.add_questionmodel %}
+            <div class="row justify-content-center">
+                <a href="{% url 'QuestionCreate' object.id %}">
+                    <button class="btn btn-control btn-outline-success"><i class="fas fa-plus"></i></button>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}

@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import TextInput, Textarea, Select
 
-from Exams.models import ExamModel
+from Exams.models import ExamModel, QuestionModel
 
 
 class ExamCreateForm(forms.ModelForm):
@@ -18,4 +18,19 @@ class ExamCreateForm(forms.ModelForm):
             'name': 'Имя экзамена:',
             'description': 'Описание экзамена:',
             'subject': 'Предмет:'
+        }
+
+
+class QuestionCreateForm(forms.ModelForm):
+    class Meta:
+        model = QuestionModel
+        exclude = ['exam']
+
+        widgets = {
+            'question_text': Textarea(attrs={'class': 'form-control', 'placeholder': 'Введите ваш вопрос...'}),
+        }
+
+        labels = {
+            'question_text': 'Текст вопроса',
+            'question_image': 'Изображение вопроса',
         }

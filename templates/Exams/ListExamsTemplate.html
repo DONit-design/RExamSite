@@ -12,7 +12,7 @@
         {% for exam in object_list %}
             <div class="exam-content">
                 <div class="exam-header">
-                    <a class="exam-link" href="">
+                    <a class="exam-link" href="{% url 'DetailExam' exam.id %}">
                         <div class="exam-name">{{ exam.name }}</div>
                     </a>
                 </div>
