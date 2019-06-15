@@ -1,0 +1,54 @@
+{% extends 'DefaultTemplate.html' %}
+{% load static %}
+{% load recaptcha2 %}
+{% block title %}Регистрация{% endblock title %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'Accounts/style.css' %}"/>
+    {% recaptcha_init %}
+{% endblock %}
+{% block body %}
+    <div class="container-fluid m-0 p-0">
+        <div class="col-12 offset-0 col-lg-8 offset-lg-2 pt-1 pt-sm-5">
+            <div class="wrapper">
+                <div class="head">Регистрация</div>
+                <form class="registration_form" action="" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="login_data col-sm-6 col-12">
+                            <div class="header">Основные данные:</div>
+                            {% for field in form %}
+                                {% if not field.label %}
+                                    <div class="form-group">
+                                        {{ field }}
+                                    </div>
+                                {% else %}
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">{{ field.label }}</span>
+                                            </div>
+                                            {{ field }}
+                                        </div>
+                                        {% if field.errors %}
+                                            <div class="alert alert-danger mt-2">
+                                                {{ field.errors }}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    {% if forloop.counter == 4 %}
+                                        </div>
+                                        <div class="profile_data col-sm-6 col-12">
+                                        <div class="header">Данные профиля:</div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            </div>
+                    </div>
+                    <div class="buttons_block mt-2">
+                        <button class="btn btn-success" type="submit">Зарегистрироваться</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

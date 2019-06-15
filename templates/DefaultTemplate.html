@@ -1,0 +1,19 @@
+{% load static %}
+{% load fontawesome_5 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Страница отсутствует!{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'RExam/bootstrap/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'RExam/style.css' %}">
+    {% fontawesome_5_static %}
+    {% block head %}{% endblock head %}
+</head>
+<body>
+{% block body %}Контент отсутствует!{% endblock body %}
+<script src="{% static 'RExam/js/jquery-3.4.0.min.js' %}"></script>
+<script src="{% static 'RExam/js/popper.min.js' %}"></script>
+<script src="{% static 'RExam/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

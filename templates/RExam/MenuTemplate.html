@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-dark menu">
+    <a class="navbar-brand" href="{% url 'MainPage' %}">RExam</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'MainPage' %}">Главная</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'ListExams' %}">Экзамены</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">О сайте</a>
+            </li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item dropdown align-right">
+                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false"><i class="far fa-user"></i>
+                    {{ user.get_full_name }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'Profile' %}">Мой профиль</a>
+                    <a class="dropdown-item" href="{% url 'ChangePassword' %}">Сменить пароль</a>
+                    <a class="dropdown-item" href="">Статистика</a>
+                    {% if user.is_staff %}<a class="dropdown-item" href="{% url 'admin:index' %}">Панель
+                        Администратора</a>{% endif %}
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'LogOut' %}">Выход</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

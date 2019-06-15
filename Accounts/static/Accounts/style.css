@@ -1,0 +1,26 @@
+.header {
+    padding: .5rem .5rem;
+}
+
+.registration_form {
+    background: whitesmoke;
+    padding: 0 1rem 1rem 1rem;
+}
+
+.registration_row {
+    height: 100%;
+}
+
+.head {
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    padding: .5rem .5rem;
+    background: #0097a7;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    color: #fff;
+}
+.wrapper{
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+    padding: 0;
+}

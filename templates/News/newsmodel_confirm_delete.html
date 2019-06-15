@@ -1,0 +1,13 @@
+{% extends 'RExam/MainTemplate.html' %}
+{% load static %}
+{% block title %}Удалить новость?{% endblock title %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'News/style.css' %}"/>
+{% endblock head %}
+{% block content %}
+<form action="" method="POST">
+        {% csrf_token %}
+        <p>Вы действительно хотите удалить "{{ object.header }}" ?</p>
+        <button type="submit" value="Confirm" class="btn btn-danger">Удалить</button>
+    </form>
+{% endblock content %}

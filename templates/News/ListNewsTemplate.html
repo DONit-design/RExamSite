@@ -1,0 +1,71 @@
+{% extends 'RExam/MainTemplate.html' %}
+{% load static %}
+{% block title %}Новости{% endblock title %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'News/style.css' %}"/>
+{% endblock head %}
+{% block content %}
+    <div class="row controls justify-content-end p-2 mr-2"><a href="{% url 'CreateNews' %}">
+        <button class="btn btn-success">Создать новость</button>
+    </a></div>
+    {% for news in object_list %}
+        <div class="news_block col-12 mb-5">
+            <div class="news_header">
+                {{ news.header }}
+            </div>
+            <div class="news_content">
+                {% if news.image %}
+                    <div class="news_image"><img class="img-thumbnail rounded" width="500" height="500"
+                                                 alt="{{ news.header }}" src="{{ news.image.url }}"/>
+                    </div>
+                {% endif %}
+                <div class="news_text">
+                    {{ news.content }}
+                </div>
+                <div class="d-flex flex-row justify-content-end">
+                    {% if perms.News.change_news %}
+                        <a href="{% url 'UpdateNews' news.id %}" class="p-1">
+                            <button class="btn btn-control btn-outline-info"><i
+                                    class="far fa-edit"></i></button>
+                        </a>
+                    {% endif %}
+                    {% if perms.News.delete_news %}
+                        <a href="{% url 'DeleteNews' news.id %}" class="p-1">
+                            <button class="btn btn-control btn-outline-danger"><i
+                                    class="fa fa-trash"></i></button>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="news_footer">
+                Дата:{{ news.date }} Тип:{{ news.type }} Автор:{{ news.author }}
+            </div>
+        </div>
+    {% empty %}
+        <p>Новости отсутствуют...</p>
+    {% endfor %}
+    {% if is_paginated %}
+        <div class="row justify-content-center">
+            <nav class="paginator" aria-label="Страницы новостей">
+                <ul class="pagination flex-wrap">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+                        </li>
+                    {% endif %}
+                    {% for page_num in page_obj.paginator.page_range %}
+                        <li class="page-item {% if page_obj.number == page_num %} active {% endif %}">
+                            <a class="page-link"
+                               href="?page={{ page_num }}">{{ page_num }}</a>
+                        </li>
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Следующая</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    {% endif %}
+{% endblock content %}

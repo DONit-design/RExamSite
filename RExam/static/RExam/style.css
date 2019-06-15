@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+
+html {
+    font-family: 'Roboto', sans-serif;
+}
+
+.g-recaptcha {
+    transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+    -webkit-transform-origin: 0 0;
+}
+
+.menu {
+    background: #0097a7;
+    font-family: Roboto, sans-serif;
+    border-radius: 3px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.main {
+    padding: 4%;
+    min-width: 300px;
+}
+
+.content-block {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.content {
+    background: whitesmoke;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.footer-content {
+    background: #0097a7;
+    font-family: Roboto, sans-serif;
+    border-radius: 3px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: .5rem 1rem;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+.news-footer {
+    margin: 0;
+}
+
+.news-footer p {
+    margin-right: .5em;
+}
+
+.btn-control {
+    min-width: 40px;
+    max-width: 40px;
+    max-height: 40px;
+    min-height: 40px;
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-width: 1px 1px 1px 2px;
+    border-color: #777;
+    background-color: #aaa;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    border-width: 1px 1px 1px 2px;
+    border-color: #555;
+    background-color: #777;
+}
+
+::-webkit-scrollbar-track:hover {
+    border-left: solid 1px #aaa;
+    background-color: #eee;
+}
+
+::-webkit-scrollbar-track {
+    border-width: 0;
+}
+
+.main_header {
+    font-size: 1.3em;
+    padding: .5rem;
+    text-align: center;
+}
+
+.main_header text {
+    border-bottom: 1px solid #B9B9B9;
+
+}

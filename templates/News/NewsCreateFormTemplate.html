@@ -1,0 +1,28 @@
+{% extends 'RExam/MainTemplate.html' %}
+{% load static %}
+{% block title %}Создание новости{% endblock title %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'News/style.css' %}"/>
+{% endblock head %}
+{% block content %}
+    <div class="main_header">
+        <text>Создание новости</text>
+    </div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {{ field.errors }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <div class="buttons_block mt-2">
+            <button class="btn btn-success" type="submit">Создать</button>
+        </div>
+    </form>
+{% endblock content %}

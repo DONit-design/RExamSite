@@ -1,0 +1,23 @@
+{% extends 'DefaultTemplate.html' %}
+{% block title %}
+    Главная
+{% endblock title %}
+{% block body %}
+    <div class="container p-1 pt-sm-5">
+        <div class="wrapper col-12 p-1">
+            <div class="menu_block">
+                {% include 'RExam/MenuTemplate.html' %}
+            </div>
+            <div class="content-block ">
+                <div class="content p-2 p-sm-3">
+                    {% block content %}
+                        {{ newslist }}
+                    {% endblock content %}
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-content">Designed by DONit</div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
