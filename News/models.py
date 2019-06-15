@@ -20,7 +20,7 @@ class NewsModel(models.Model):
     content = models.TextField(blank=False, verbose_name=u'Текст новости')
     image = models.ImageField(upload_to='NewsImages', blank=True, verbose_name=u'Изображение новости')
     type = models.ForeignKey(NewsTypeModel, on_delete=models.SET_NULL, null=True, verbose_name=u'Тип новости')
-    date = models.DateField(auto_now_add=True, blank=False, verbose_name=u'Дата')
+    date = models.DateTimeField(auto_now_add=True, blank=False, verbose_name=u'Дата')
     author = models.ForeignKey(RExamUserModel, null=True, on_delete=models.SET_NULL, verbose_name=u'Автор')
 
     def __str__(self):

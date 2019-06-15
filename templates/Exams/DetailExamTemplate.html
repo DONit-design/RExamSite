@@ -33,6 +33,11 @@
                                 <div class="row">
                                     <div class="col-8">{{ question.question_text }}</div>
                                     <div class="row col-4 flex-row question-controls justify-content-end">
+                                        {% if perms.Exams.view_questionmodel %}
+                                            <a href="{% url 'QuestionDetail' question.id %}">
+                                                <button class="btn btn-control btn-outline-info ml-1"><i
+                                                        class="fas fa-info"></i></button>
+                                            </a>{% endif %}
                                         {% if perms.Exams.delete_questionmodel %}
                                             <a href="{% url 'QuestionDelete' pk=question.id exam_id=object.id %}">
                                                 <button class="btn btn-control btn-outline-danger ml-1"><i
@@ -40,7 +45,6 @@
                                             </a>{% endif %}
                                     </div>
                                 </div>
-
                             </td>
                         </tr>
                     {% endfor %}

@@ -1,0 +1,51 @@
+{% extends 'RExam/MainTemplate.html' %}
+{% load static %}
+{% block title %} {{ object.name }} {% endblock title %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'Exams/style.css' %}"/>
+{% endblock head %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="exam-detail">
+            <div class="main_header">
+                <text>Детали вопроса:</text>
+            </div>
+            <div class="detail-description">{{ object.question_text }}</div>
+            {% if object.image %}<img class="img-thumbnail rounded" width="500" height="500"
+                                      alt="{{ object.question_text }}"
+                                      src="{{ object.question_image.url }}"/>{% endif %}
+        </div>
+        <div class="exam-questions">
+            <table class="table table-responsive-sm  table-hover">
+                <thead>
+                <tr>
+                    <th scope="col" style="width: 2%">№</th>
+                    <th scope="col" style="width: 80%;">Ответы</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for answer in answers %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>
+                            <div class="row">
+                                <div class="col-8">{{ answer.answer_text }}</div>
+                                <div class="row col-4 flex-row question-controls justify-content-end">
+                                    <button class="btn btn-control btn-outline-info ml-1"><i
+                                            class="fas fa-info"></i></button>
+                                    <button class="btn btn-control btn-outline-danger ml-1"><i
+                                            class="far fa-trash-alt"></i></button>
+                                </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="row justify-content-center">
+                <a href="#">
+                    <button class="btn btn-control btn-outline-success"><i class="fas fa-plus"></i></button>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

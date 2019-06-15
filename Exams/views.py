@@ -6,7 +6,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, DetailView, DeleteView
 
 from Exams.forms import ExamCreateForm, QuestionCreateForm
-from Exams.models import ExamModel, QuestionModel
+from Exams.models import ExamModel, QuestionModel, AnswerModel
 
 
 class ExamsListView(ListView):
@@ -63,3 +63,17 @@ class QuestionDeleteView(PermissionRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('DetailExam', kwargs={'pk': self.kwargs['exam_id']})
+
+
+class QuestionDetailView(PermissionRequiredMixin, DetailView):
+    model = QuestionModel
+    permission_required = 'Exams.view_questionmodel'
+    template_name = 'Exams/DetailQuestionTemplate.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(QuestionDetailView, self).get_context_data(**kwargs)
+        try:
+            context['answers'] = AnswerModel.objects.filter(question=self.kwargs['pk'])
+        except ObjectDoesNotExist:
+            context['answers'] = None
+        return context
