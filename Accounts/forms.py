@@ -10,7 +10,7 @@ from Accounts.models import RExamUserModel
 
 
 class UserCreateForm(UserCreationForm):
-    ReCaptcha = ReCaptchaField(ReCaptchaWidget(), label='', error_messages={'required': 'Капча не пройдена!'})
+    ReCaptcha = ReCaptchaField(ReCaptchaWidget(), label='', error_messages={'required': 'Каптча не пройдена!'})
     password1 = forms.CharField(label=Icon('key', 'fas').as_html(),
                                 widget=forms.PasswordInput(
                                     attrs={'class': 'form-control', 'placeholder': 'Введите пароль'}))
@@ -49,7 +49,7 @@ class UserLoginForm(AuthenticationForm):
                              label=Icon('user', 'far').as_html())
     password = forms.CharField(label=Icon('key', 'fas').as_html(),
                                widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Пароль'}))
-    ReCaptcha = ReCaptchaField(ReCaptchaWidget(), label='', error_messages={'required': 'Капча не пройдена!'})
+    ReCaptcha = ReCaptchaField(ReCaptchaWidget(), label='', error_messages={'required': 'Каптча не пройдена!'})
 
 
 class UserProfileForm(UserChangeForm):
@@ -57,7 +57,7 @@ class UserProfileForm(UserChangeForm):
     username = UsernameField(
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Логин', 'readonly': True}),
         label=Icon('user', 'far').as_html())
-    ReCaptcha = ReCaptchaField(ReCaptchaWidget(), label='', error_messages={'required': 'Капча не пройдена!'})
+    ReCaptcha = ReCaptchaField(ReCaptchaWidget(), label='', error_messages={'required': 'Каптча не пройдена!'})
 
     class Meta:
         model = RExamUserModel
@@ -80,7 +80,7 @@ class UserProfileForm(UserChangeForm):
 
 
 class ChangePasswordForm(PasswordChangeForm):
-    ReCaptcha = ReCaptchaField(ReCaptchaWidget(), label='', error_messages={'required': 'Капча не пройдена!'})
+    ReCaptcha = ReCaptchaField(ReCaptchaWidget(), label='', error_messages={'required': 'Каптча не пройдена!'})
     new_password1 = forms.CharField(label=Icon('key', 'fas').as_html(),
                                     widget=forms.PasswordInput(
                                         attrs={'class': 'form-control', 'placeholder': 'Введите новый пароль'}))

@@ -7,7 +7,21 @@
 {% block content %}
     <div class="container-fluid">
         <div class="exam-detail">
-            <div class="detail-name">{{ object.name }}</div>
+            <div class="row detail-name">
+                <div>{{ object.name }}</div>
+                <div class="ml-auto">
+                    <ul class="list-inline m-0">
+                        <li class="list-inline-item"> {% if perms.Exams.change_exammodel %}
+                            <a href="{% url 'ExamUpdate' object.id %}">
+                                <button class="btn btn-outline-info">Редактировать</button>
+                            </a> {% endif %}</li>
+                        <li class="list-inline-item">{% if perms.Exams.delete_exammodel %}
+                            <a href="{% url 'ExamRemove' object.id %}">
+                                <button class="btn btn-outline-danger">Удалить</button>
+                            </a> {% endif %}</li>
+                    </ul>
+                </div>
+            </div>
             <div class="detail-description">{% if not object.description %}Описание
                 отсутствует...{% endif %}{{ object.description }}</div>
             <div class="row flex-row flex-row-reverse detail-info">

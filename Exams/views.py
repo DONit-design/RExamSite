@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, CreateView, DetailView, DeleteView
+from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 
 from Exams.forms import ExamCreateForm, QuestionCreateForm
 from Exams.models import ExamModel, QuestionModel, AnswerModel
@@ -77,3 +77,19 @@ class QuestionDetailView(PermissionRequiredMixin, DetailView):
         except ObjectDoesNotExist:
             context['answers'] = None
         return context
+
+
+class ExamRemoveView(PermissionRequiredMixin, DeleteView):
+    model = ExamModel
+    permission_required = 'Exams.delete_exammodel'
+    success_url = reverse_lazy('ListExams')
+
+
+class ExamUpdateView(PermissionRequiredMixin, UpdateView):
+    model = ExamModel
+    form_class = ExamCreateForm
+    template_name = 'Exams/UpdateExamTemplate.html'
+    permission_required = 'Exams.change_exammodel'
+
+    def get_success_url(self):
+        return reverse('DetailExam', kwargs={'pk': self.kwargs['pk']})

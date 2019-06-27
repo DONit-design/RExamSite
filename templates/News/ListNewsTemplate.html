@@ -5,9 +5,10 @@
     <link rel="stylesheet" href="{% static 'News/style.css' %}"/>
 {% endblock head %}
 {% block content %}
-    <div class="row controls justify-content-end p-2 mr-2"><a href="{% url 'CreateNews' %}">
-        <button class="btn btn-success">Создать новость</button>
-    </a></div>
+    {% if perms.News.add_newsmodel %}
+        <div class="row controls justify-content-end p-2 mr-2"><a href="{% url 'CreateNews' %}">
+            <button class="btn btn-success">Создать новость</button>
+        </a></div>{% endif %}
     {% for news in object_list %}
         <div class="news_block col-12 mb-5">
             <div class="news_header">

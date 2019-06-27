@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '1d4(x9lk2jnxhfw_sju^_ftzo^a^u%b5=-q_fv)70z6qy2s#k5'
 RECAPTCHA_PUBLIC_KEY = '6Lf4FKAUAAAAAP7eXSYXbBDHkMnJT1JKoTgECQ6i'
 RECAPTCHA_PRIVATE_KEY = '6Lf4FKAUAAAAAB-wPJQd_VhEugdlAw2VtS_TK1Wv'
-
+#os.environ['RECAPTCHA_DISABLE'] = 'True'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 

@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView
 
-from News.forms import AddNewsForm, UpdateNewsForm
+from News.forms import UpdateNewsForm
 from News.models import NewsModel
 
 

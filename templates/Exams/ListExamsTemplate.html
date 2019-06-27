@@ -5,9 +5,10 @@
     <link rel="stylesheet" href="{% static 'Exams/style.css' %}"/>
 {% endblock head %}
 {% block content %}
-    <div class="row controls justify-content-end p-2 mr-2"><a href="{% url 'CreateExam' %}">
-        <button class="btn btn-success">Создать экзамен</button>
-    </a></div>
+    {% if perms.Exams.add_exammodel %}
+        <div class="row controls justify-content-end p-2 mr-2"><a href="{% url 'CreateExam' %}">
+            <button class="btn btn-success">Создать экзамен</button>
+        </a></div>{% endif %}
     <div class="d-flex flex-row flex-wrap">
         {% for exam in object_list %}
             <div class="exam-content">
